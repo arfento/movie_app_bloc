@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../models/movie_response.dart';
+
 class MovieRepository {
   final String apiKey = "bc147b55e819c6794234abc51e4c883f";
   static String mainUrl = "https://api.themoviedb.org/3";
@@ -16,4 +18,15 @@ class MovieRepository {
   var getGenresUrl = "$mainUrl/genre/movie/list";
   var getPersonsUrl = "$mainUrl/trending/person/week";
   var movieUrl = "$mainUrl/movie";
+
+  Future<MovieResponse> getUpcomingMovies() async {
+    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    try {
+      Response response =
+          await _dio.get(getUpComingApi, queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
 }
