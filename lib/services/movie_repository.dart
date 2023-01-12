@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../models/movie_detail_response.dart';
 import '../models/movie_response.dart';
 
 class MovieRepository {
@@ -27,6 +28,51 @@ class MovieRepository {
       return MovieResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieResponse> getNowPlaying(int page) async {
+    var params = {"api_key": apiKey, "language": "en-US", "page": page};
+    try {
+      Response response =
+          await _dio.get(getNowPlayingMoviesApi, queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieResponse> getPopuparMovies(int page) async {
+    var params = {"api_key": apiKey, "language": "en-US", "page": page};
+    try {
+      Response response =
+          await _dio.get(getPopularMoviesApi, queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieResponse> getTopRatedMovies() async {
+    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    try {
+      Response response =
+          await _dio.get(getTopRatedMoviesApi, queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieDetailResponse> getMovieDetail(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response =
+          await _dio.get(movieUrl + "/$id", queryParameters: params);
+      return MovieDetailResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieDetailResponse.withError(
+          "Error: $error, StackTrace: $stacktrace");
     }
   }
 }
