@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movie_app_bloc/models/cast_response.dart';
 
 import '../models/movie_detail_response.dart';
 import '../models/movie_response.dart';
@@ -73,6 +74,38 @@ class MovieRepository {
     } catch (error, stacktrace) {
       return MovieDetailResponse.withError(
           "Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieResponse> getMovies(int page) async {
+    var params = {"api_key": apiKey, "language": "en-US", "page": page};
+    try {
+      Response response = await _dio.get(getMoviesApi, queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<MovieResponse> getSimilarMovies(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id" + "/similar",
+          queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
+    }
+  }
+
+  Future<CastResponse> getCasts(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id" + "/credits",
+          queryParameters: params);
+      return CastResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return CastResponse.withError("Error: $error, StackTrace: $stacktrace");
     }
   }
 }
