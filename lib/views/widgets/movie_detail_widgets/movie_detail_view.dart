@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -201,7 +199,7 @@ class DetailView extends StatelessWidget {
                       left: 5.0,
                       child: SafeArea(
                           child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           EvaIcons.arrowIosBack,
                           size: 25,
                         ),
@@ -213,7 +211,7 @@ class DetailView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -223,36 +221,36 @@ class DetailView extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         EvaIcons.clockOutline,
                         size: 15,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
                         getDuration(state.movie.runtime),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 11.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.only(right: 10),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: state.movie.genres.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: EdgeInsets.only(right: 5),
+                                padding: const EdgeInsets.only(right: 5),
                                 child: Center(
                                   child: Container(
-                                    padding: EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(30.0)),
@@ -296,11 +294,11 @@ class DetailView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(color: Colors.white.withOpacity(0.05)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

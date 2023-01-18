@@ -1,6 +1,6 @@
 import 'dart:async';
 
-enum NavBarItem { home, genres, search, profile }
+enum NavBarItem { home, genres, search, profile, list }
 
 class BottomNavbarBloc {
   final StreamController<NavBarItem> _navBarController =
@@ -23,6 +23,9 @@ class BottomNavbarBloc {
         break;
       case 3:
         _navBarController.sink.add(NavBarItem.profile);
+        break;
+      case 4:
+        _navBarController.sink.add(NavBarItem.list);
         break;
     }
   }

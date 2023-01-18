@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app_bloc/bloc/bottom_navbar_bloc.dart';
+import 'package:movie_app_bloc/views/pages/movies_list.dart';
 
-import '../bloc/theme_bloc/theme_controller.dart';
-import '../services/movie_repository.dart';
-import 'pages/home_screen/home_screen.dart';
+import '../../bloc/theme_bloc/theme_controller.dart';
+import '../../services/movie_repository.dart';
+import 'home_screen/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen(
@@ -63,6 +64,8 @@ class _MainScreenState extends State<MainScreen> {
                 return Container();
               case NavBarItem.search:
                 return Container();
+              case NavBarItem.list:
+                return MoviesList();
               default:
                 return Container();
             }
@@ -150,6 +153,23 @@ class _MainScreenState extends State<MainScreen> {
                     activeIcon: SizedBox(
                       child: SvgPicture.asset(
                         "assets/icons/profile-active.svg",
+                        color: Colors.white,
+                        height: 25.0,
+                        width: 25.0,
+                      ),
+                    ),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "List",
+                    icon: SvgPicture.asset(
+                      "assets/icons/layers.svg",
+                      color: Colors.grey.shade700,
+                      height: 25.0,
+                      width: 25.0,
+                    ),
+                    activeIcon: SizedBox(
+                      child: SvgPicture.asset(
+                        "assets/icons/layers-active.svg",
                         color: Colors.white,
                         height: 25.0,
                         width: 25.0,
