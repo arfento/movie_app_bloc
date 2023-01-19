@@ -52,6 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         body: StreamBuilder<NavBarItem>(
           stream: _bottomNavBarBloc.itemStream,
+          initialData: _bottomNavBarBloc.defaultItems,
           builder: (context, snapshot) {
             switch (snapshot.data) {
               case NavBarItem.home:
